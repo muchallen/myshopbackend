@@ -200,3 +200,9 @@
 .nav li.active a i.nc-icon {
       color: white !important;
 }
+
+.main-panel > .content{
+        padding: 0 30px 30px;
+        min-height: 100vh !important;
+        margin-top: 93px;
+    }

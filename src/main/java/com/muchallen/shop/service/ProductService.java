@@ -48,7 +48,7 @@ public class ProductService {
     }
 
     public Boolean fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
-        file.transferTo(new File("/Users/mac/Downloads/shop/images/"+file.getOriginalFilename()));
+        file.transferTo(new File("/Users/mac/Desktop/e-shop/myshop/assets/images/stores"+file.getOriginalFilename()));
         return true;
     }
 }

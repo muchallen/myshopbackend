@@ -305,7 +305,7 @@
 
     > .content{
         padding: 0 30px 30px;
-        min-height: calc(100vh - 123px);
+        min-height: 100vh;
         margin-top: 93px;
     }
 
@@ -362,3 +362,9 @@
 .panel-header-lg{
   height: 380px
 }
+
+.main-panel > .content{
+        padding: 0 30px 30px;
+        min-height: 100vh !important;
+        margin-top: 93px;
+    }
