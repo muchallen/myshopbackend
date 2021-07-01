@@ -2,7 +2,7 @@
 var newProducts;
 async function getProducts() {
   var productHtml= ``
-  var products =  await fetch('http://localhost:8081/api/v1/products/all', {
+  var products =  await fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/all', {
           method: 'GET', // or 'PUT'
           headers: {
           },
@@ -43,7 +43,7 @@ getProducts();
     var type = form.productType.value.toLowerCase();
 
      var data = {name,category,price,type,quantity,description,image}
-         fetch('http://localhost:8081/api/v1/products/add', {
+         fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/add', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ getProducts();
         }).then(response=>response.json()).then(data=> {
         var fileData = new FormData()
         fileData.append('file' , file);
-         fetch('http://localhost:8081/api/v1/products/uploadImage', {
+         fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/uploadImage', {
           method: 'POST', // or 'PUT'
           headers: {
           },
@@ -60,3 +60,4 @@ getProducts();
         }).then((res)=>location.reload(true)).catch(error=> console.log(error))
   }).catch(err=>alert(err));
       })
+
