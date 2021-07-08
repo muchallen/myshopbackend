@@ -47,7 +47,7 @@ getProducts();
 
       var fileData = new FormData()
              fileData.append('file' , file);
-              fetch(host2+'/uploadImage', {
+              fetch('https://shop-deploy2021.herokuapp.com/uploadImage', {
                method: 'POST', // or 'PUT'
                headers: {
                },
