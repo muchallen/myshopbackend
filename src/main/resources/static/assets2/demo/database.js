@@ -1,8 +1,10 @@
 // Fetch Products
 var newProducts;
+var host = "http://localhost:8081"
+var host2 = "https://centric-shop-backend.herokuapp.com"
 async function getProducts() {
   var productHtml= ``
-  var products =  await fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/all', {
+  var products =  await fetch(host2+'/api/v1/products/all', {
           method: 'GET', // or 'PUT'
           headers: {
           },
@@ -42,22 +44,26 @@ getProducts();
     var file = form.productImage.files[0];
     var type = form.productType.value.toLowerCase();
 
-     var data = {name,category,price,type,quantity,description,image}
-         fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/add', {
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }).then(response=>response.json()).then(data=> {
-        var fileData = new FormData()
-        fileData.append('file' , file);
-         fetch('https://centric-shop-backend.herokuapp.com/api/v1/products/uploadImage', {
-          method: 'POST', // or 'PUT'
-          headers: {
-          },
-          body:fileData
-        }).then((res)=>location.reload(true)).catch(error=> console.log(error))
-  }).catch(err=>alert(err));
-      })
+
+      var fileData = new FormData()
+             fileData.append('file' , file);
+              fetch(host2+'/uploadImage', {
+               method: 'POST', // or 'PUT'
+               headers: {
+               },
+               body:fileData
+             }).
+         then(data=>data.json()).then(res=> {
+         console.log(res)
+         var data = {name,category,price,type,quantity,description,image:res.name}
+         fetch(host2+'/api/v1/products/add', {
+                 method: 'POST', // or 'PUT'
+                 headers: {
+                   'Content-Type': 'application/json',
+                 },
+                 body: JSON.stringify(data),
+               }).then(s=>location.reload(true)).catch(error=> console.log(error))
+  }).catch(error=> console.log(error))
+  })
+
 
