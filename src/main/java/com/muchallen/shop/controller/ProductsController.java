@@ -2,8 +2,10 @@ package com.muchallen.shop.controller;
 
 import com.muchallen.shop.product.Product;
 import com.muchallen.shop.service.ProductService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,9 +54,13 @@ public class ProductsController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("uploadImage")
-    public void uploadImages (@RequestParam("file") MultipartFile file) throws IOException {
-    productService.fileUpload(file);
+    @PostMapping(value = "uploadImage" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> uploadImages (@RequestParam("file") MultipartFile file) throws IOException {
+    String name = productService.fileUpload(file);
+        JSONObject resp = new JSONObject();
+        resp.put("image", name);
+        return new ResponseEntity<>(resp.toString() ,HttpStatus.OK);
+
     }
 
 }

@@ -1,6 +1,6 @@
 // Fetch Products
 var newProducts;
-var host = "http://localhost:8081"
+var host = "http://localhost:8082"
 var host2 = "https://centric-shop-backend.herokuapp.com"
 async function getProducts() {
   var productHtml= ``
@@ -20,13 +20,9 @@ async function getProducts() {
                                 <tr>
                                 `
           })
-          document.querySelector('.tbody').innerHTML=productHtml
-
+          document.querySelector('.tbody').innerHTML=productHtml;
 }
 getProducts();
-
-
-
   var openModalBtn = document.getElementById("openModal");
   var closeModalBtn = document.getElementById("closeModal");
   openModalBtn.addEventListener('click',()=> $("#exampleModal").modal("show"));
@@ -44,18 +40,18 @@ getProducts();
     var file = form.productImage.files[0];
     var type = form.productType.value.toLowerCase();
 
-
       var fileData = new FormData()
              fileData.append('file' , file);
-              fetch('https://myshopfrontend22.vercel.app/shop/uploadImage', {
+              fetch(host2+'/api/v1/products/uploadImage', {
                method: 'POST', // or 'PUT'
                headers: {
                },
                body:fileData
              }).
-         then(data=>data.json()).then(res=> {
-         console.log(res)
-         var data = {name,category,price,type,quantity,description,image:res.name}
+         then(res=>res.json()).then( res=> {
+          alert(res)
+        console.log(res)
+         var data = {name,category,price,type,quantity,description,image:res.image}
          fetch(host2+'/api/v1/products/add', {
                  method: 'POST', // or 'PUT'
                  headers: {

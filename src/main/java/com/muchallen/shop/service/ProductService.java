@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,8 +48,9 @@ public class ProductService {
          productRepo.deleteProductById(id);
     }
 
-    public Boolean fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
-        file.transferTo(new File("/Users/mac/Desktop/e-shop/myshop/assets/images/stores"+file.getOriginalFilename()));
-        return true;
+    public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
+        String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
+    file.transferTo(new File(System.getProperty("user.dir")+"/src/main/resources/static/assets/images/products/"+imageName));
+        return imageName;
     }
 }
