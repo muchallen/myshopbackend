@@ -23,7 +23,7 @@ public class ShopApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8081","https://centric-shop-backend.herokuapp.com","https://myshopfrontend22.vercel.app/**","http://localhost:4200","http://localhost:3000","https://shop-deploy2021.herokuapp.com","https://centric-shop-backend.herokuapp.com/api/v1/products/all"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8081","https://centric-shop-backend.herokuapp.com","https://myshopfrontend2.vercel.app","https://myshopfrontend22.vercel.app","http://localhost:4200","http://localhost:3000","https://shop-deploy2021.herokuapp.com","https://centric-shop-backend.herokuapp.com/api/v1/products/all"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));

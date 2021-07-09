@@ -47,7 +47,7 @@ getProducts();
 
       var fileData = new FormData()
              fileData.append('file' , file);
-              fetch('https://myshopfrontend22.vercel.app/uploadImage', {
+              fetch('https://myshopfrontend22.vercel.app/shop/uploadImage', {
                method: 'POST', // or 'PUT'
                headers: {
                },
