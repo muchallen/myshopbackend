@@ -52,8 +52,8 @@ public class ShopApplication {
 		return  new WebMvcConfigurer() {
 			@Override
 			public void addResourceHandlers(ResourceHandlerRegistry registry) {
-				registry.addResourceHandler("/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static/successImage/")
-						.addResourceLocations("file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static/successImage/");
+				registry.addResourceHandler("/app/file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static")
+						.addResourceLocations("file:/app/file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static");
 			}
 		};
 	}
