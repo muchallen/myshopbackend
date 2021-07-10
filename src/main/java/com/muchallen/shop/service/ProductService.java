@@ -56,7 +56,7 @@ public class ProductService {
         System.out.println(path.getAbsolutePath());
         // If the uploaded file is /static/successImage/content/ as follows
         File upload = new File(path.getAbsolutePath());
-        if (!upload.exists()) upload.mkdirs();
+        if (!upload.exists()) upload.mkdirs();;
 
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
 
