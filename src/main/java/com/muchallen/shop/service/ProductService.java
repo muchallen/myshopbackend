@@ -5,6 +5,7 @@ import com.muchallen.shop.product.Product;
 import com.muchallen.shop.repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
@@ -50,7 +51,9 @@ public class ProductService {
 
     public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
-    file.transferTo(new File(System.getProperty("user.dir")+"/src/main/resources/static/assets/images/products/"+imageName));
+        String path = ResourceUtils.getURL("classpath:static").getPath();
+        file.transferTo(new File(path+"assets/images/products/"+imageName));
+        System.out.println(path);
         return imageName;
     }
 }
