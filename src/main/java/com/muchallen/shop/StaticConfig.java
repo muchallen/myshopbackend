@@ -12,4 +12,5 @@ public class StaticConfig implements WebMvcConfigurer {
             registry.addResourceHandler("/static/**").addResourceLocations("file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static/successImage/content");
         }
 
+
 }

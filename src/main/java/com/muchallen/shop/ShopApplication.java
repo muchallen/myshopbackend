@@ -8,6 +8,8 @@ import org.springframework.util.unit.DataSize;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.MultipartConfigElement;
 import java.util.Arrays;
@@ -43,6 +45,17 @@ public class ShopApplication {
 		/// Set the total size of the total upload data
 		factory.setMaxRequestSize(DataSize.parse("100MB"));
 		return factory.createMultipartConfig();
+	}
+
+
+	WebMvcConfigurer webMvcConfigurer (){
+		return  new WebMvcConfigurer() {
+			@Override
+			public void addResourceHandlers(ResourceHandlerRegistry registry) {
+				registry.addResourceHandler("/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static/successImage/content")
+						.addResourceLocations("file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static/successImage/content");
+			}
+		};
 	}
 
 
