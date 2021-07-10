@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -55,7 +56,7 @@ public class ProductsController {
     }
 
     @PostMapping(value = "uploadImage" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> uploadImages (@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<String> uploadImages (@RequestParam("file") MultipartFile file) throws IOException, URISyntaxException {
     String name = productService.fileUpload(file);
         JSONObject resp = new JSONObject();
         resp.put("image", name);

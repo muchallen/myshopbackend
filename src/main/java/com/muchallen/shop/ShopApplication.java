@@ -10,6 +10,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import javax.servlet.MultipartConfigElement;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class ShopApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8082","https://centric-shop-backend.herokuapp.com","https://myshopfrontend2.vercel.app","https://myshopfrontend22.vercel.app","http://localhost:4000","http://localhost:3000","https://shop-deploy2021.herokuapp.com","https://centric-shop-backend.herokuapp.com/api/v1/products/all"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8082","https://centric-shop-backend.herokuapp.com","https://myshopfrontend2.vercel.app","https://myshopfrontend22.vercel.app","http://localhost:4200","http://localhost:3000","https://shop-deploy2021.herokuapp.com","https://centric-shop-backend.herokuapp.com/api/v1/products/all"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
@@ -36,7 +37,6 @@ public class ShopApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-
 	@Bean
 	public MultipartConfigElement multipartConfigElement() {
 		MultipartConfigFactory factory = new MultipartConfigFactory();
@@ -46,17 +46,18 @@ public class ShopApplication {
 		factory.setMaxRequestSize(DataSize.parse("100MB"));
 		return factory.createMultipartConfig();
 	}
-
 	@Bean
 	WebMvcConfigurer webMvcConfigurer (){
 		return  new WebMvcConfigurer() {
 			@Override
 			public void addResourceHandlers(ResourceHandlerRegistry registry) {
-				registry.addResourceHandler("/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static")
-						.addResourceLocations("file:/app/target/shop-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/static");
+				registry.addResourceHandler("/other/**")
+						.addResourceLocations("file:/Users/mac/Desktop/allen/other")
+						.setCachePeriod(3600)
+						.resourceChain(true)
+						.addResolver(new PathResourceResolver());
+
 			}
 		};
 	}
-
-
 }

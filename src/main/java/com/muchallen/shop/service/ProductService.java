@@ -60,14 +60,7 @@ public class ProductService {
 
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
 
-        file.transferTo(new File(upload+imageName));
-        String jarPath = ProductService.class
-                .getProtectionDomain()
-                .getCodeSource()
-                .getLocation()
-                .toURI()
-                .getPath();
-        System.out.println("jar path: "+ jarPath);
+        file.transferTo(new File("/Users/mac/Desktop/e-shop/myshop/src/assets/images/productsimages/"+imageName));
         return imageName;
     }
 }
