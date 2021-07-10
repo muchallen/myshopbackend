@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -49,7 +50,7 @@ public class ProductService {
          productRepo.deleteProductById(id);
     }
 
-    public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
+    public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException, URISyntaxException {
 
         File path = new File(ResourceUtils.getURL("classpath:static/").getPath());
         System.out.println(path.getAbsolutePath());
@@ -60,7 +61,13 @@ public class ProductService {
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
 
         file.transferTo(new File(upload+imageName));
-        System.out.println(upload);
+        String jarPath = ProductService.class
+                .getProtectionDomain()
+                .getCodeSource()
+                .getLocation()
+                .toURI()
+                .getPath();
+        System.out.println("jar path: "+ jarPath);
         return imageName;
     }
 }
