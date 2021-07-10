@@ -47,7 +47,7 @@ public class ShopApplication {
 		return factory.createMultipartConfig();
 	}
 
-
+	@Bean
 	WebMvcConfigurer webMvcConfigurer (){
 		return  new WebMvcConfigurer() {
 			@Override
