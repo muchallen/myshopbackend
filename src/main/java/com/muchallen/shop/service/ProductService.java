@@ -51,10 +51,10 @@ public class ProductService {
 
     public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
 
-        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+        File path = new File(ResourceUtils.getURL("classpath:static").getPath());
         System.out.println(path.getAbsolutePath());
         // If the uploaded file is /static/successImage/content/ as follows
-        File upload = new File(path.getAbsolutePath(), "static/successImage/content/");
+        File upload = new File(path.getAbsolutePath());
         if (!upload.exists()) upload.mkdirs();
 
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
