@@ -3,7 +3,7 @@ var newProducts;
 var host = "http://localhost:8082"
 var host2 = "https://centric-shop-backend.herokuapp.com"
 async function getProducts() {
-console.log(__dirname)
+console.log(window.location.pathname)
   var productHtml= ``
   var products =  await fetch(host2+'/api/v1/products/all', {
           method: 'GET', // or 'PUT'
