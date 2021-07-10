@@ -59,7 +59,7 @@ public class ProductService {
 
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
 
-        file.transferTo(new File(upload+imageName));
+        file.transferTo(new File(upload+"/"+imageName));
         System.out.println(upload);
         return imageName;
     }
