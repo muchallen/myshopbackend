@@ -52,7 +52,7 @@ public class ProductService {
     public String fileUpload (MultipartFile file) throws IllegalArgumentException, IOException {
         String imageName =""+ new Date().getTime()+ file.getOriginalFilename();
         String path = ResourceUtils.getURL("classpath:static").getPath();
-        file.transferTo(new File(path+"/assets/images/products/"+imageName));
+        file.transferTo(new File(path+"/"+imageName));
         System.out.println(path);
         return imageName;
     }
