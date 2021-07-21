@@ -43,7 +43,7 @@ public class ShopApplication {
 	  ///single file maximum
 		factory.setMaxFileSize(DataSize.parse("100MB"));
 		/// Set the total size of the total upload data
-		factory.setMaxRequestSize(DataSize.parse("100MB"));
+		factory.setMaxRequestSize(DataSize.parse("100MB"));//llklklkl
 		return factory.createMultipartConfig();
 	}
 	@Bean
